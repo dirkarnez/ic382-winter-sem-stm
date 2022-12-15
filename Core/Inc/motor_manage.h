@@ -30,16 +30,24 @@ void motor_peripherals_init(MOTOR_INDEX motor)
 	{
 		// MOTOR1 with ENCODER 3
 		// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+		HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
+		HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);
 	}else if(motor == MOTOR2)
 	{
 		// MOTOR2 with ENCODER 4 [Align with BAT IN in the motor drive]
 		// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+		HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_2);
+		HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
 	}else if (motor == MOTOR3)
 	{
 		// TO-DO: Configure motor 3
+		HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_3);
+		HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
 		x = 0;
 	}else{
 		// TO-DO: Configure motor 4
+		HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_4);
+		HAL_TIM_Encoder_Start(&htim8,TIM_CHANNEL_ALL);
 		x = 0;
 	}
 	x++;
@@ -49,32 +57,47 @@ void motor_peripherals_init(MOTOR_INDEX motor)
 void motor_controller(MOTOR_INDEX motor,MOTOR_DIRECTION turn,int duty_cycle,int max_counter)
 {
 	int x = 0;
+	duty_cycle = duty_cycle;
 	if(motor == MOTOR1)
 	{
 		if(turn == CLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_SET);
 		}else if (turn == COUNTERCLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_RESET);
 		}else
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_RESET);
 		}
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_1,calculate_MOTOR_timer_register(duty_cycle, max_counter));
 	}else if(motor == MOTOR2)
 	{
 		if(turn == CLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_SET);
 		}else if (turn == COUNTERCLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_RESET);
 		}else
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_RESET);
 		}
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
+		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_2,calculate_MOTOR_timer_register(duty_cycle, max_counter));
 	}else if (motor == MOTOR3)
 	{
 		// TO-DO: Configure motor 3
