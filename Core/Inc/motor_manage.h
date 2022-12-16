@@ -63,13 +63,13 @@ void motor_controller(MOTOR_INDEX motor,MOTOR_DIRECTION turn,int duty_cycle,int 
 		if(turn == CLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
-			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_RESET);
 		}else if (turn == COUNTERCLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
-			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_SET);
-			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,GPIO_PIN_SET);
 		}else
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
@@ -83,13 +83,13 @@ void motor_controller(MOTOR_INDEX motor,MOTOR_DIRECTION turn,int duty_cycle,int 
 		if(turn == CLOCKWISE)
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
-			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_SET);
-		}else if (turn == COUNTERCLOCKWISE)
-		{
-			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
 			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_SET);
 			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_RESET);
+		}else if (turn == COUNTERCLOCKWISE)                      
+		{                                                        
+			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻                 
+			HAL_GPIO_WritePin(MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,GPIO_PIN_SET);
 		}else
 		{
 			// FILL IT IN BY YOURSELF (╯ ͡❛ ‿ ͡❛)╯┻━┻
